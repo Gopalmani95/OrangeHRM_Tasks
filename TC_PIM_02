@@ -1,0 +1,113 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+import time
+from selenium.webdriver.common.keys import Keys 
+from selenium.webdriver.common.action_chains import ActionChains
+s= Service("C:\Webdriver\chromedriver.exe")
+driver = webdriver.Chrome(service=s)
+driver.maximize_window()
+driver.implicitly_wait(10)
+driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
+time.sleep(3)
+driver.find_element(By.XPATH,"//input[@name='username']").send_keys("Admin")
+time.sleep(3)
+driver.find_element(By.XPATH,"//input[@type='password']").send_keys("admin123")
+time.sleep(3)
+driver.find_element(By.XPATH,"//button[@type='submit']").click()
+#Edit
+pim=driver.find_element(By.XPATH,"//span[text()='PIM']")
+pim.click()
+#driver.execute_script("window.scrollTo(0,document.body.scrollHeight);")
+driver.execute_script("window.scrollBy(0,300)","")
+edit=driver.find_element(By.XPATH,"//h6[text()='PIM']//following::i[contains(@class,'bi-pencil-fill')][1]")
+time.sleep(3)
+edit.click()
+#First name
+first=driver.find_element(By.XPATH,"//input[@placeholder='First Name']")
+time.sleep(3)
+first.send_keys(Keys.CONTROL + 'a', Keys.BACKSPACE)
+first.send_keys("Gopi")
+#Last name
+last=driver.find_element(By.XPATH,"//input[@placeholder='Last Name']")
+time.sleep(3)
+last.send_keys(Keys.CONTROL + 'a', Keys.BACKSPACE)
+last.send_keys("Krishnan")
+#otherId
+driver.execute_script("window.scrollBy(0,150)","")
+otherid=driver.find_element(By.XPATH,"//label[text()='Other Id']//following::input[position()='1']")
+time.sleep(3)
+otherid.send_keys(Keys.CONTROL + 'a', Keys.BACKSPACE)
+otherid.send_keys("123")
+#licensefield
+licensefield=driver.find_element(By.XPATH,"//label[contains(text(),'License Number')]//following::input[position()='1']")
+time.sleep(3)
+licensefield.send_keys(Keys.CONTROL + 'a', Keys.BACKSPACE)
+licensefield.send_keys("234FTHV")
+#licenseexpirydate
+driver.execute_script("window.scrollBy(0,150)","")
+licenseexpirydate=driver.find_element(By.XPATH,"//label[contains(text(),'License Expiry Date')]//following::input[position()='1']")
+time.sleep(3)
+licenseexpirydate.send_keys(Keys.CONTROL + 'a', Keys.BACKSPACE)
+licenseexpirydate.send_keys("2023-08-09")
+#ssnnumber
+ssnnumber=driver.find_element(By.XPATH,"//label[contains(text(),'SSN Number')]//following::input[position()='1']")
+time.sleep(3)
+ssnnumber.send_keys(Keys.CONTROL + 'a', Keys.BACKSPACE)
+ssnnumber.send_keys("123456789")
+#sinnumber
+sinnumber=driver.find_element(By.XPATH,"//label[text()='SIN Number']//following::input[position()='1']")
+time.sleep(3)
+sinnumber.send_keys(Keys.CONTROL + 'a', Keys.BACKSPACE)
+sinnumber.send_keys("123456789")
+#nationality
+driver.execute_script("window.scrollBy(0,150)","")
+nationality=driver.find_element(By.XPATH,"//label[contains(text(),'Nationality')]//following::div[1]")
+#nationality.click()
+actions = ActionChains(driver)
+actions.click(nationality)
+time.sleep(3)
+ActionChains(driver).key_down(Keys.DOWN).key_down(Keys.DOWN).send_keys(Keys.ENTER).perform()
+actions.click(nationality)
+actions.perform()
+#maritalStatus
+marital=driver.find_element(By.XPATH,"//label[contains(text(),'Marital')]//following::div[1]")
+actions1 = ActionChains(driver)
+actions1.click(marital)
+time.sleep(3)
+ActionChains(driver).key_down(Keys.DOWN).key_down(Keys.DOWN).send_keys(Keys.ENTER).perform()
+actions1.click(marital)
+actions1.perform()
+#dateOfBirth
+dob=driver.find_element(By.XPATH,"//label[contains(text(),'Date of Birth')]//following::div[1]//input")
+time.sleep(3)
+dob.send_keys(Keys.CONTROL + 'a', Keys.BACKSPACE)
+dob.send_keys("1989-06-02")
+time.sleep(3)
+#gender
+gender=driver.find_element(By.XPATH,"//label[contains(text(),'Gender')]//following::div[1]//label[text()='Male']//input")
+time.sleep(3)
+driver.execute_script("arguments[0].click();", gender)
+#militaryService
+driver.execute_script("window.scrollBy(0,100)","")
+militaryservice=driver.find_element(By.XPATH,"//label[contains(text(),'Military Service')]//following::div[1]//input")
+time.sleep(3)
+militaryservice.send_keys("weyujhgf")
+#editsave
+editsave=driver.find_element(By.XPATH,"//h6[text()='Personal Details']/..//button[@type='submit']")
+time.sleep(3)
+editsave.click()
+#bloodtype
+bloodtype=driver.find_element(By.XPATH,"//label[contains(text(),'Blood Type')]//following::div[1]")
+actions5 = ActionChains(driver)
+actions5.click(bloodtype)
+time.sleep(3)
+ActionChains(driver).key_down(Keys.DOWN).key_down(Keys.DOWN).send_keys(Keys.ENTER).perform()
+actions5.click(bloodtype)
+actions5.perform()
+#editsave
+editsave1=driver.find_element(By.XPATH,"//h6[text()='Custom Fields']/..//button[@type='submit']")
+time.sleep(3)
+editsave1.click()
+time.sleep(3)
+driver.execute_script("window.scrollBy(0,50)","")

@@ -1,0 +1,78 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+import time
+s= Service("C:\Webdriver\chromedriver.exe")
+driver = webdriver.Chrome(service=s)
+driver.maximize_window()
+driver.implicitly_wait(10)
+driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
+time.sleep(3)
+driver.find_element(By.XPATH,"//input[@name='username']").send_keys("Admin")
+driver.find_element(By.XPATH,"//input[@type='password']").send_keys("admin123")
+driver.find_element(By.XPATH,"//button[@type='submit']").click()
+#click PIM Module
+pim=driver.find_element(By.XPATH,"//span[text()='PIM']")
+pim.click()
+#click Add
+driver.find_element(By.XPATH,"//button[text()=' Add ']").click()
+#Add png photo
+time.sleep(3)
+#photo=driver.find_element(By.XPATH,"//button[@class='oxd-icon-button employee-image-action']")
+#photo.send_keys("C:\\Users\\dell\\OneDrive\\Desktop\\image 01.jpg")
+# First name
+first=driver.find_element(By.XPATH,"//input[@placeholder='First Name']")
+first.send_keys("James")
+#Middle name
+middle=driver.find_element(By.XPATH,"//input[@placeholder='Middle Name']")
+middle.send_keys("Anand")
+#Last name
+last=driver.find_element(By.XPATH,"//input[@placeholder='Last Name']")
+last.send_keys("Innocent")
+#click
+driver.find_element(By.XPATH,"//span[@class='oxd-switch-input oxd-switch-input--active --label-right']").click()
+#username
+user=driver.find_element(By.XPATH,"(//input[@class='oxd-input oxd-input--active'])[3]")
+user.send_keys("jamesanand22")
+#password
+password=driver.find_element(By.XPATH,"(//input[@type='password'])[1]")
+password.send_keys("James@22")
+#confirm
+confirm=driver.find_element(By.XPATH,"(//input[@type='password'])[2]")
+confirm.send_keys("James@22")
+#save
+save=driver.find_element(By.XPATH,"//button[text()=' Save ']").click()
+time.sleep(10)
+driver.find_element(By.XPATH,"//a[text()='Employee List']").click()
+#Edit
+driver.execute_script("window.scrollTo(100,document.body.scrollHeight);")
+time.sleep(10)
+edit=driver.find_element(By.XPATH,"//h6[text()='PIM']//following::i[contains(@class,'bi-pencil-fill')][1]")
+edit.click()
+time.sleep(10)
+first.click.clear()
+first.send_keys("Gopi")
+time.sleep(10)
+last.clear
+last.send_keys("Krishnan")
+#otherId
+time.sleep(10)
+otherid=driver.find_element(By.XPATH,"//label[text()='Other Id']//following::input[position()='1']")
+otherid.send_keys("123")
+#licensefield
+licensefield=driver.find_element(By.XPATH,"//label[contains(text(),'License Number')]//following::input[position()='1']")
+licensefield.send_keys("234FTHV")
+#licenseexpirydate
+licenseexpirydate=driver.find_element(By.XPATH,"//label[contains(text(),'License Expiry Date')]//following::input[position()='1']")
+licenseexpirydate.send_keys("2023-08-09")
+#ssnnumber
+ssnnumber=driver.find_element(By.XPATH,"//label[contains(text(),'SSN Number')]//following::input[position()='1']")
+ssnnumber.send_keys("123456789")
+#sinnumber
+sinnumber=driver.find_element(By.XPATH,"//label[text()='SIN Number']//following::input[position()='1']")
+sinnumber.send_keys("123456789")
+#nationality
+nationality=driver.find_element(By.XPATH,"//label[contains(text(),'Nationality')]//following::div[text()='-- Select --'][1]")
+nationalitylist=driver.find_element(By.XPATH,"//li[text()='Albanian']")
+nationality.click
+nationalitylist.click

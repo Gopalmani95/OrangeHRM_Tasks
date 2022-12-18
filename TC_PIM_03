@@ -1,0 +1,28 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+import time
+from selenium.webdriver.common.keys import Keys 
+from selenium.webdriver.common.action_chains import ActionChains
+s= Service("C:\Webdriver\chromedriver.exe")
+driver = webdriver.Chrome(service=s)
+driver.maximize_window()
+driver.implicitly_wait(10)
+driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
+time.sleep(3)
+driver.find_element(By.XPATH,"//input[@name='username']").send_keys("Admin")
+driver.find_element(By.XPATH,"//input[@type='password']").send_keys("admin123")
+driver.find_element(By.XPATH,"//button[@type='submit']").click()
+#Edit
+pim=driver.find_element(By.XPATH,"//span[text()='PIM']")
+pim.click()
+#driver.execute_script("window.scrollTo(0,document.body.scrollHeight);")
+driver.execute_script("window.scrollBy(0,300)","")
+#delete
+delete=driver.find_element(By.XPATH,"//h6[text()='PIM']//following::i[contains(@class,'bi-trash')][1]")
+time.sleep(3)
+delete.click()
+#deleteConfirm
+deleteconfirm= driver.find_element(By.XPATH,"//button[text()=' Yes, Delete ']")
+deleteconfirm.click()
+time.sleep(3)
